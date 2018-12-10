@@ -1,0 +1,49 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                 The Essence                ;;;;;;;
+;;                  2018/12/10                ;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(begin
+    (sys:load "libs/core/instruments.xtm")
+    (sys:load "libs/external/instruments_ext.xtm")
+    (sys:load "libs/my/piano.xtm")
+    (sys:load "libs/my/churchorgan.xtm"))
+
+(bind-func dsp
+  (lambda (in time chan dat)
+    (+ (piano in time chan dat)
+       (churchorgan in time chan dat))))
+
+(dsp:set! dsp)
+
+(define scale (pc:scale 0 'aeolian))
+
+(define l1
+  (lambda (beat ps ds)
+    (let ((beatm (modulo beat 8)))
+      (map (lambda (p)
+             (play piano p (cosr 150 10 1/4) (car ds))
+             (play 1/2 piano p (cosr 150 10 1/4) (car ds))
+             (play 1 piano p (cosr 150 10 1/4) (car ds)))
+           (pc:make-chord-fixed (car ps) 4 (pc:chord (cond ((< beatm 2) 4)
+                                                           ((< beatm 6) 0)
+                                                           (else 0))
+                                                     (if (< beatm 6) '- '-7))))
+      (callback (*metro* (+ beat (* .5 (car ds)))) 'l1 (+ beat (car ds))
+                (rotate ps -1)
+                (rotate ds -1)))))
+
+(define melody (make-list-with-proc 12 (λ (p) (pc:random 60 84 scale))))
+(l1 (*metro* 'get-beat 4) melody) '(3/4 3/4 1 1/2 1 1/2 3/4 1))
+
+(define l2
+  (lambda (beat p dur)
+    (play churchorgan p 130 dur)
+    (callback (*metro* (+ beat (* .5 dur))) 'l2 (+ beat dur)
+              (random (remove p '(40 41 42 43 44 45)))
+              dur)))
+
+(l2 (*metro* 'get-beat 4) 45 4)
+

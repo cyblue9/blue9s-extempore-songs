@@ -1,12 +1,6 @@
-# blue9's extempore songs
+# The Essence
 
-## Artwork
-* [Vimeo](https://vimeo.com/cyblue9)
-* [SoundColud](https://soundcloud.com/cyblue9)
-
-## Thanks
-* [extempore](https://github.com/digego/extempore)
-
+* [On Vimeo](https://vimeo.com/305435643)
 
 ## Licence
 Copyright (c) 2018, Yuya Chiba
@@ -16,11 +10,11 @@ All rights reserved.
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
 
- * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
 
- * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
- 
- * Neither the name of highlight.js nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+* Neither the name of highlight.js nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND ANY
 EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
